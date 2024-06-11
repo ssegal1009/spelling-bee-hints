@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelling Bee Hints!</title>
+    <style>
+        body {
+            font-family: 'Cambria', sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input, button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #hint {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spelling Bee Hints!</h1>
+        <p>Enter the letters of today's bee:</p>
+        <input type="text" id="word_state" placeholder="e.g., abcdefg">
+        <button onclick="getHint()">Get Hint</button>
+        <div id="hint"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getHint() {
+            const wordState = $('#word_state').val();
+            $.ajax({
+                url: '/get_hint',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ word_state: wordState }),
+                success: function(response) {
+                    $('#hint').text(response.hint);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
