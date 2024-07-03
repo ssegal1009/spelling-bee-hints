@@ -43,14 +43,6 @@ def firstLetter(bee):
     firstPangram = bee[0]
     return "The first letter of the pangram is: " + firstPangram[0]
 
-bee = 'zetiglm'
-
-# Sample hint dictionary
-hints = {
-    bee : firstLetter(bee),
-    "ear__a__": "The word is a type of fruit.",
-    # Add more word states and corresponding hints as needed
-}
 
 @app.route('/')
 def index():
@@ -59,7 +51,7 @@ def index():
 @app.route('/get_hint', methods=['POST'])
 def get_hint():
     data = request.json
-    word_state = data.get('word_state', 'e___l__t')  # Default to a sample word state if not provided
+    word_state = data.get('word_state', 'e___l__t')  #placeholder example
     hint = hints.get(word_state, "I don't have a hint for that word state.")
     return jsonify({"hint": hint})
 
