@@ -1,5 +1,5 @@
 # Author: Sofia Segal
-# Version: 7.18.24
+# Version: 8.9.24
 #Flask script -- all the Python logic/OpenAI API implementation is in this script. Routes at the end to script.js
 
 from flask import Flask, render_template, jsonify, request, url_for
